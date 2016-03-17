@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div class="content">
+
+    <div class="form">
+        <form method="POST" action="{{ url_for('home') }}">
+            <p>Create New Article</p>
+            {{ form.article_title.label }} <br>
+            {{ form.article_title }} <br>
+            {{ form.article_body.label }} <br>
+            {{ form.article_body }} <br>
+
+            <p><input type="submit" value="{{ 'Submit' }}"></p>
+        </form>
+    </div>
+
+
+    <div class="article">
+        <p>Articles:</p>
+        {% if storage.articles %}
+            {% for article in storage.articles %}
+                <h2> {{ article.title }}</h2>
+                <p>{{ article.body }}</p>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+</div>
+</body>
+</html>
