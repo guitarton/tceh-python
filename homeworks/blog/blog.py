@@ -17,10 +17,15 @@ def home():
     form = ArticleForm()
     article = Articles()
     if request.method == 'POST':
-        article.title = form.article_title.data
-        article.body = form.article_body.data
-        storage.articles.append(article)
-        storage.dump()
+        valid = form.validate()
+        if valid:
+            form = ArticleForm(request.form)
+            article.title = form.article_title.data
+            article.body = form.article_body.data
+            storage.articles.append(article)
+            storage.dump()
+    else:
+        form = ArticleForm()
     return render_template('base.html', form=form, storage=storage)
 
 
