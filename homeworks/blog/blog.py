@@ -1,6 +1,5 @@
 from flask import Flask, request, render_template
 from forms import ArticleForm
-
 from models import Articles, Storage
 import CONFIG
 
@@ -14,18 +13,12 @@ def home():
         storage.load()
     except IOError:
         pass
-    form = ArticleForm()
-    article = Articles()
-    if request.method == 'POST':
-        valid = form.validate()
-        if valid:
-            form = ArticleForm(request.form)
-            article.title = form.article_title.data
-            article.body = form.article_body.data
+    form = ArticleForm(request.form)
+    if request.method == 'POST' and form.validate():
+        if True:
+            article = Articles(form.article_title.data, form.article_body.data)
             storage.articles.append(article)
             storage.dump()
-    else:
-        form = ArticleForm()
     return render_template('base.html', form=form, storage=storage)
 
 

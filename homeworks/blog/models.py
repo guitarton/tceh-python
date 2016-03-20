@@ -17,6 +17,6 @@ class Storage:
 
 
 class Articles:
-    def __init__(self):
-        self.title = ''
-        self.body = ''
+    def __init__(self, title, body):
+        self.title = title
+        self.body = body
