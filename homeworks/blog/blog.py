@@ -14,6 +14,7 @@ def home():
     except IOError:
         pass
     form = ArticleForm(request.form)
+    print(form.validate(), request.form)
     if request.method == 'POST' and form.validate():
         if True:
             article = Articles(form.article_title.data, form.article_body.data)

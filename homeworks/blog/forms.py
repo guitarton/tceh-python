@@ -1,5 +1,5 @@
-# from flask.ext.wtf import Form
-from wtforms import Form
+from flask.ext.wtf import Form
+# from wtforms import Form
 from wtforms import StringField, TextAreaField, validators
 
 

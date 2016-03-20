@@ -10,6 +10,7 @@
     <div class="form">
         <form method="POST" action="{{ url_for('home') }}">
             <p>Create New Article</p>
+            {{ form.hidden_tag() }}
             {{ form.article_title.label }} <br>
             {{ form.article_title }} <br>
             {{ form.article_body.label }} <br>
