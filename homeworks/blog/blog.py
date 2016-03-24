@@ -16,10 +16,9 @@ def home():
     form = ArticleForm(request.form)
     print(form.validate(), request.form)
     if request.method == 'POST' and form.validate():
-        if True:
-            article = Articles(form.article_title.data, form.article_body.data)
-            storage.articles.append(article)
-            storage.dump()
+        article = Articles(form.article_title.data, form.article_body.data)
+        storage.articles.append(article)
+        storage.dump()
     return render_template('base.html', form=form, storage=storage)
 
 
