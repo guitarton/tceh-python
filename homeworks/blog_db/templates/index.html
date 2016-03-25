@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div class="content">
+    <div class="form">
+        <form method="POST" action=" {{ url_for('hello') }}">
+            <h2>Create New Article</h2>
+            {{ form.hidden_tag() }}
+            {{ form.title.label }} <br>
+            {{ form.title }} <br>
+            {{ form.content.label }} <br>
+            {{ form.content }} <br>
+
+            <p><input type="submit" value="{{ 'Submit' }}"></p>
+        </form>
+    </div>
+    <div class="article">
+        <h2>Articles:</h2>
+        {% for article in articles %}
+            <h2>{{ article.id }} {{ article.title }}</h2>
+            <p>{{ article.content }}</p>
+            <a href="{{ url_for('delete',id=article.id) }}">Delete</a>
+        {% endfor %}
+    </div>
+
+</div>
+
+</body>
+</html>
