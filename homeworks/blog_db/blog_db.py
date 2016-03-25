@@ -28,12 +28,8 @@ def hello():
     return render_template('index.html', form=form, articles=articles)
 
 
-@app.route('/delete/<id>', methods=['GET'])
+@app.route('/delete/<int:id>', methods=['GET'])
 def delete(id):
-    try:
-        id = int(id)
-    except ValueError:
-        pass
     article = Article.query.filter_by(id=id).first()
     article.is_visible = False
     db.session.commit()
