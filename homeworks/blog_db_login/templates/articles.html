@@ -1,0 +1,36 @@
+{% extends "_base1.html" %}
+{% block content %}
+    {% for article in articles %}
+        <div class="blog-post">
+            <h2 class="blog-post-title">{{ article.title }}</h2>
+
+            <p class="blog-post-meta">
+                Published {{ article.date_created }} by
+                <b>{{ article.user.username }}</b>
+            </p>
+
+            <p>{{ article.content }}</p>
+            {% if current_user.id == article.user_id %}
+                <a href="{{ url_for('main.delete',id=article.id) }}">Delete</a>
+            {% endif %}
+
+        </div>
+
+    {% endfor %}
+
+    <!--
+    <div>
+        <div class="article">
+            {% for article in articles %}
+                <h2>{{ article.title }}</h2>
+                <p>Published {{ article.date_created }} by <b>{{ article.user.username }}</b></p>
+                <p>{{ article.content }}</p>
+                {% if current_user.id == article.user_id %}
+                    <a href="{{ url_for('main.delete',id=article.id) }}">Delete</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    -->
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "_base1.html" %}
+{% block content %}
+    <div >
+        <div class="form">
+            <form method="POST" action=" {{ url_for('main.new_article') }}">
+                <h2>Create New Article</h2>
+                {{ form.hidden_tag() }}
+                {{ form.title.label }} <br>
+                {{ form.title }} <br>
+                {{ form.content.label }} <br>
+                {{ form.content }} <br>
+
+                <p><input type="submit" value="{{ 'Submit' }}"></p>
+            </form>
+        </div>
+    </div>
+{% endblock %}

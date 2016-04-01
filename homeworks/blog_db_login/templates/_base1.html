@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SuperBlog</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static',filename='bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+
+
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static',filename='blog.css') }}" rel="stylesheet">
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="blog-masthead">
+    <div class="container">
+        <nav class="blog-nav">
+            <a class="blog-nav-item" href="{{ url_for('main.index') }}">Home</a>
+            {% if not current_user.is_authenticated %}
+                <a class="blog-nav-item" href="{{ url_for('auth.login') }}">Login</a>
+                <a class="blog-nav-item" href="{{ url_for('auth.register') }}">Register</a>
+            {% else %}
+                <a class="blog-nav-item" href="{{ url_for('main.new_article') }}">New Article</a>
+                <a class="blog-nav-item" href="{{ url_for('auth.logout') }}">Logout</a>
+            {% endif %}
+        </nav>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="blog-header">
+        <h1 class="blog-title">SuperBlog</h1>
+
+        <p class="lead blog-description">Hello
+            {% if not current_user.is_authenticated %}
+                Guest
+            {% else %}
+                {{ current_user.username }}
+            {% endif %}
+        </p>
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-8 blog-main">
+
+            <div class="blog-post">
+                {% block content %}
+                {% endblock %}
+
+
+            </div>
+            <!-- /.blog-post -->
+        </div>
+        <!-- /.blog-sidebar -->
+
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+    <p>SuperBlog<br>Copyright &copy; 2016</p>
+
+    <p>
+        <a href="#">Back to top</a>
+    </p>
+</footer>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="{{ url_for('static',filename='bootstrap/dist/js/bootstrap.min.js') }}"></script>
+
+</body>
+</html>
