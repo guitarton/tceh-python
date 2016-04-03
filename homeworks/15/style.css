@@ -1,0 +1,26 @@
+.content {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.parent {
+    height: 300px;
+    width: 200px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.row {
+
+    width: 250px;
+
+}
+
+.field {
+    height: 50px;
+    width: 50px;
+    background: #4EF0DA;
+    border: 1px solid;
+    display: inline-block;
+    float: left;
+}
