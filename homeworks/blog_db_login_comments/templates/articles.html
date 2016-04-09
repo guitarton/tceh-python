@@ -1,0 +1,29 @@
+{% extends "_base1.html" %}
+{% block content %}
+    {% for article in articles %}
+        <div class="blog-post">
+            <h2 class="blog-post-title">{{ article.title }}</h2>
+            {% if current_user.id == article.user_id %}
+                <a href="{{ url_for('main.delete',article_id=article.id) }}">Delete</a>
+            {% endif %}
+            <p class="blog-post-meta">
+                Published {{ article.date_created }} by
+                <b>{{ article.user.username }}</b>
+            </p>
+
+            <p>{{ article.content }}</p>
+            <button type="button" class="comments btn btn-xs btn-primary"
+                    value="{{ article.id }}">Comments
+            </button>
+            <div class="comments"></div>
+            <div class="new_comment">
+                <input type="text">
+                <button type="button" class="new_comment"></button>
+            </div>
+
+
+        </div>
+
+    {% endfor %}
+
+{% endblock %}

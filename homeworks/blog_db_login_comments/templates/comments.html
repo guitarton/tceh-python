@@ -1,0 +1,11 @@
+{% extends "_base1.html" %}
+{% block content %}
+    {% for comment in comments %}
+        <div class="blog-post">
+            <h2>{{ comment.id }}</h2> {{ comment.content }}
+
+        </div>
+
+    {% endfor %}
+
+{% endblock %}
