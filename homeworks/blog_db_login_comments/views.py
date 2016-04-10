@@ -6,7 +6,8 @@ from flask import (
     render_template,
     flash,
     url_for,
-    jsonify
+    jsonify,
+    escape
 )
 from flask.ext.login import (
     login_required,
@@ -70,7 +71,6 @@ def logout():
 @main.route('/', methods=['GET'])
 def index():
     articles = Article.query.filter_by(is_visible=True)
-    print(articles)
     return render_template('articles.html', articles=articles)
 
 
@@ -107,13 +107,13 @@ def delete(article_id):
 def ajax_method(article_id):
     if request.method == "POST":
         req = request.json
-        print(req)
         user = current_user if current_user.is_authenticated else None
         article = Article.query.filter_by(id=article_id).first()
-        content = req['content']
-        comment = Comment(content, article, user)
-        db.session.add(comment)
-        db.session.commit()
+        content = escape(req['content'])
+        if len(content) > 0:
+            comment = Comment(content, article, user)
+            db.session.add(comment)
+            db.session.commit()
 
     comments = Comment.query.filter_by(article_id=article_id)
     comments_json = {}
